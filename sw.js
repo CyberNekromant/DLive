@@ -1,19 +1,16 @@
 
-const CACHE_NAME = 'dlive-cache-v2';
+const CACHE_NAME = 'dlive-cache-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  'https://cdn.tailwindcss.com',
-  'https://aistudiocdn.com/react-dom@^19.2.1/',
-  'https://aistudiocdn.com/react@^19.2.1/',
   'https://cdn-icons-png.flaticon.com/512/3047/3047928.png'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[Service Worker] Caching all: app shell and content');
+      console.log('[Service Worker] Caching app shell');
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
