@@ -59,7 +59,11 @@ const Header = ({ title }: { title: string }) => {
   return (
     <header className="bg-white dark:bg-gray-800 p-4 sticky top-0 z-10 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between transition-colors">
       <div className="flex items-center gap-2">
-        <PawIcon className="text-brand-600 dark:text-brand-500 w-6 h-6" />
+        <img 
+          src="https://cdn-icons-png.flaticon.com/512/3047/3047928.png" 
+          alt="DLive Logo" 
+          className="w-8 h-8 object-contain"
+        />
         <h1 className="text-xl font-bold text-gray-800 dark:text-white tracking-tight">DLive</h1>
         {!isOnline && (
           <span className="bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-200 text-[10px] px-2 py-0.5 rounded-full font-medium animate-pulse">
@@ -104,7 +108,13 @@ const formatDate = (isoString: string) => {
 // --- Views ---
 
 // 1. Dashboard View
-const DashboardView = () => {
+const DashboardView = ({ 
+  installPrompt, 
+  onInstall 
+}: { 
+  installPrompt: any; 
+  onInstall: () => void 
+}) => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [pets, setPets] = useState<Pet[]>([]);
   const [filter, setFilter] = useState<'all' | 'today'>('today');
@@ -146,6 +156,26 @@ const DashboardView = () => {
 
   return (
     <div className="p-4 pb-24 space-y-6">
+      {installPrompt && (
+        <div className="bg-brand-50 dark:bg-brand-900/20 p-3 rounded-lg flex items-center justify-between border border-brand-100 dark:border-brand-800 animate-fade-in">
+          <div className="flex items-center gap-3">
+             <div className="bg-white dark:bg-gray-800 p-1.5 rounded-md shadow-sm">
+                <img src="https://cdn-icons-png.flaticon.com/512/3047/3047928.png" className="w-5 h-5 object-contain" alt="Logo" />
+             </div>
+             <div className="text-sm">
+                <p className="font-semibold text-gray-800 dark:text-gray-100">Установить DLive</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Работает без интернета</p>
+             </div>
+          </div>
+          <button 
+            onClick={onInstall} 
+            className="bg-brand-500 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm hover:bg-brand-600 transition-colors"
+          >
+            Скачать
+          </button>
+        </div>
+      )}
+
       <div className="flex bg-gray-200 dark:bg-gray-700 rounded-lg p-1 transition-colors">
         <button 
           onClick={() => setFilter('today')}
@@ -628,10 +658,10 @@ const App: React.FC = () => {
 
   const renderView = () => {
     switch (currentView) {
-      case 'dashboard': return <DashboardView />;
+      case 'dashboard': return <DashboardView installPrompt={installPrompt} onInstall={handleInstallClick} />;
       case 'pets': return <PetsView />;
       case 'settings': return <SettingsView isDark={theme === 'dark'} toggleTheme={toggleTheme} installPrompt={installPrompt} onInstall={handleInstallClick} />;
-      default: return <DashboardView />;
+      default: return <DashboardView installPrompt={installPrompt} onInstall={handleInstallClick} />;
     }
   };
 
