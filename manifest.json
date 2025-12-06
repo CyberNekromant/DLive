@@ -1,0 +1,20 @@
+{
+  "short_name": "DLive",
+  "name": "DLive: Уход за питомцем",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3047/3047928.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3047/3047928.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#f97316",
+  "background_color": "#ffffff"
+}
