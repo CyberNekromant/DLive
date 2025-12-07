@@ -589,7 +589,7 @@ const SettingsView = ({
       </div>
 
       <div className="text-center text-sm text-gray-400 dark:text-gray-600 mt-8">
-        <p>DLive v2.1 (PWA)</p>
+        <p>DLive v2.2 (PWA)</p>
         <p>Сделано с любовью к питомцам</p>
       </div>
     </div>
